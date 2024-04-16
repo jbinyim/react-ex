@@ -1,17 +1,18 @@
 import React from "react";
 
 const TodoItem = ({ todo }) => {
-  // console.log(todo);
-
+  console.log(todo);
+  const result = (todo) => {
+    todo.map((it) => {
+      return it;
+    });
+  };
   return (
     <div className="todoItem">
-      {todo.map((it) => {
-        console.log(it);
-      })}
       <div className="checkbox">
         <input type="checkbox" />
       </div>
-      <div className="content"></div>
+      <div className="content">{result(todo)}</div>
     </div>
   );
 };
