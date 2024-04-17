@@ -23,7 +23,7 @@ const mockup = [
 function App() {
   const [todo, setTodo] = useState(mockup);
   const idRef = useRef(2);
-  // console.log(todo);
+
   const onCreate = (content) => {
     const newItem = {
       id: idRef.current,
@@ -35,11 +35,15 @@ function App() {
     idRef.current += 1;
   };
 
+  const onDelete = (targetId) => {
+    setTodo(todo.filter((it) => it.id !== targetId.id));
+  };
+
   return (
     <div className="App">
       <Header />
       <TodoEditer onCreate={onCreate} />
-      <TodoList todo={todo} />
+      <TodoList todo={todo} onDelete={onDelete} />
     </div>
   );
 }

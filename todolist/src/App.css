@@ -10,12 +10,17 @@ a {
   text-decoration: none;
   color: inherit;
 }
+body {
+  padding: 5px;
+  background: #ececec;
+}
 
 .App {
+  background: #fff;
   width: 100%;
   height: 100%;
   max-width: 500px;
-  margin: 100px auto;
+  margin: 50px auto;
   padding: 20px;
   display: flex;
   flex-direction: column;

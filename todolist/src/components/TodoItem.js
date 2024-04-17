@@ -1,18 +1,21 @@
 import React from "react";
+import "./TodoItem.css";
 
-const TodoItem = ({ todo }) => {
-  console.log(todo);
-  const result = (todo) => {
-    todo.map((it) => {
-      return it;
-    });
-  };
+const TodoItem = ({ it, onDelete }) => {
   return (
     <div className="todoItem">
       <div className="checkbox">
         <input type="checkbox" />
       </div>
-      <div className="content">{result(todo)}</div>
+      <div className="items">
+        <div className="content">{it.content}</div>
+        <div className="date">
+          {new Date(it.createDate).toLocaleDateString()}
+        </div>
+      </div>
+      <button onClick={() => onDelete(it)} className="btn">
+        삭제
+      </button>
     </div>
   );
 };

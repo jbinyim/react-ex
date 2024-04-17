@@ -1,0 +1,20 @@
+.todoList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.searchBar {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.searchBar input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  outline: none;
+}
+.listWrapper {
+  border-top: 1px solid #ccc;
+}

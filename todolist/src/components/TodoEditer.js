@@ -24,14 +24,17 @@ const TodoEditer = ({ onCreate }) => {
   };
   return (
     <div className="todoEditer">
-      <input
-        placeholder="오늘의 할 일"
-        onKeyDown={onKeyDown}
-        ref={inputRef}
-        value={content}
-        onChange={onChangeText}
-      />
-      <button onClick={onSubmit}>등록</button>
+      <h3>Todo❕</h3>
+      <div className="inputText">
+        <input
+          placeholder="오늘의 할 일"
+          onKeyDown={onKeyDown}
+          ref={inputRef}
+          value={content}
+          onChange={onChangeText}
+        />
+        <button onClick={onSubmit}>등록</button>
+      </div>
     </div>
   );
 };
