@@ -3,7 +3,7 @@ import "./TodoList.css";
 import TodoItem from "./TodoItem";
 import { useState } from "react";
 
-const TodoList = ({ todo, onDelete }) => {
+const TodoList = ({ todo, onDelete, onUpDate }) => {
   const [search, setSearch] = useState("");
   const searchText = (e) => {
     setSearch(e.target.value);
@@ -15,9 +15,18 @@ const TodoList = ({ todo, onDelete }) => {
           it.content.toLowerCase().includes(search.toLocaleLowerCase())
         );
   };
+
+  const totalCount = todo.length;
+  const totalDone = todo.filter((it) => it.isDone).length;
+  const totalIsDone = totalCount - totalDone;
   return (
     <div className="todoList">
       <h3>TodoList❕</h3>
+      <div className="totalLp">
+        <p>- 총 개수 : {totalCount} </p>
+        <p>- 완료한 일 : {totalDone} </p>
+        <p>- 완료되지 못한 일 : {totalIsDone} </p>
+      </div>
       <div className="searchBar">
         <input
           value={search}
@@ -26,7 +35,12 @@ const TodoList = ({ todo, onDelete }) => {
         />
         <div className="listWrapper">
           {searchList().map((it) => (
-            <TodoItem key={it.id} it={it} onDelete={onDelete} />
+            <TodoItem
+              key={it.id}
+              it={it}
+              onDelete={onDelete}
+              onUpDate={onUpDate}
+            />
           ))}
         </div>
       </div>

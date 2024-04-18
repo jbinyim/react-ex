@@ -33,17 +33,28 @@ function App() {
     };
     setTodo([newItem, ...todo]);
     idRef.current += 1;
+    localStorage.setItem("todoList", JSON.stringify(newItem));
+  };
+
+  const onUpDate = (targetId) => {
+    const newItem = setTodo(
+      todo.map((it) =>
+        it.id === targetId.id ? { ...it, isDone: !it.isDone } : it
+      )
+    );
+    localStorage.setItem("todoList", JSON.stringify(newItem));
   };
 
   const onDelete = (targetId) => {
-    setTodo(todo.filter((it) => it.id !== targetId.id));
+    const newItem = setTodo(todo.filter((it) => it.id !== targetId.id));
+    localStorage.setItem("todoList", JSON.stringify(newItem));
   };
 
   return (
     <div className="App">
       <Header />
       <TodoEditer onCreate={onCreate} />
-      <TodoList todo={todo} onDelete={onDelete} />
+      <TodoList todo={todo} onDelete={onDelete} onUpDate={onUpDate} />
     </div>
   );
 }

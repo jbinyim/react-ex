@@ -1,11 +1,15 @@
 import React from "react";
 import "./TodoItem.css";
 
-const TodoItem = ({ it, onDelete }) => {
+const TodoItem = ({ it, onDelete, onUpDate }) => {
   return (
     <div className="todoItem">
       <div className="checkbox">
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          checked={it.isDone}
+          onChange={() => onUpDate(it)}
+        />
       </div>
       <div className="items">
         <div className="content">{it.content}</div>
