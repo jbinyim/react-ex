@@ -1,7 +1,6 @@
-import React from "react";
 import "./TodoList.css";
 import TodoItem from "./TodoItem";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const TodoList = ({ todo, onDelete, onUpDate }) => {
   const [search, setSearch] = useState("");
@@ -15,6 +14,11 @@ const TodoList = ({ todo, onDelete, onUpDate }) => {
           it.content.toLowerCase().includes(search.toLocaleLowerCase())
         );
   };
+
+  // useEffect(() => {
+  //   const copyList = JSON.parse(JSON.stringify(todo));
+  //   setSearch(copyList);
+  // }, [todo, onDelete, onUpDate]);
 
   const totalCount = todo.length;
   const totalDone = todo.filter((it) => it.isDone).length;

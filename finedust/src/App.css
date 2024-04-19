@@ -1,0 +1,86 @@
+.content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #f2f1ed;
+  border-radius: 8px;
+}
+.app {
+  margin-top: 20px;
+}
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.thead_tr th {
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: -2px;
+}
+.tbody_tr td {
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: -1px;
+}
+.mapImg {
+  margin: 0 auto;
+  max-width: 350px;
+  height: 100%;
+  min-height: 500px;
+  background: url("./img/map.png") center/cover no-repeat;
+  position: relative;
+}
+
+.mapImg div {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+#서울 {
+  top: calc(15%);
+  left: calc(33%);
+}
+#인천 {
+  top: calc(20%);
+  left: calc(17%);
+}
+#경기 {
+  top: calc(27%);
+  left: calc(33%);
+}
+#강원 {
+  top: calc(15%);
+  left: calc(60%);
+}
+#충남 {
+  top: calc(40%);
+  left: calc(28%);
+}
+#충북 {
+  top: calc(37%);
+  left: calc(47%);
+}
+#경남 {
+  top: calc(60%);
+  left: calc(57%);
+}
+#경북 {
+  top: calc(45%);
+  left: calc(70%);
+}
+#전남 {
+  top: calc(67%);
+  left: calc(25%);
+}
+#전북 {
+  top: calc(53%);
+  left: calc(32%);
+}
+#제주 {
+  top: calc(85%);
+  left: calc(17%);
+}
