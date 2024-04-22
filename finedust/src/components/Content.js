@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-const Content = () => {
+const Content = ({ clickSn }) => {
   return (
     <div>
       <Table striped bordered hover>
@@ -15,7 +15,7 @@ const Content = () => {
         </thead>
         <tbody className="content_tbody">
           <tr className="tbody_tr">
-            <td>제주</td>
+            <td>{clickSn}</td>
             <td>주의보</td>
             <td>182 m3</td>
             <td>2024-04-17</td>

@@ -1,6 +1,6 @@
-const Ping = ({ area, it }) => {
+const Ping = ({ area, it, getClickSn }) => {
   const getSn = (e) => {
-    console.log(e.target.id || e.target.parentNode.id);
+    getClickSn(e.target.id || e.target.parentNode.id);
   };
   return (
     <div id={area} onClick={getSn}>

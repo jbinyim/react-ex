@@ -6,11 +6,12 @@ import { Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
 
 const apiKey =
-  "GyxfVGU8XkFeOXVhO0uvXD0goIGWlePJkuuWB1zujkWtofZZ60es1zd18eBU3Yk8%2FzZy%2Fueuy%2BzVqgJQ6vEb5Q%3D%3D";
+  "2q1EVxA7X%2FVrtrl9akxgR8LTKQpXfPkEvMKXLLyzTb1jBgkwa2coV%2F0LI4o8RKX4JqjGPmlin0JPcv%2BIkQ6%2FUg%3D%3D";
 const currentYear = new Date().getFullYear();
 
 function App() {
   const [fineDust, setFineDust] = useState([]);
+  const [clickSn, setClickSn] = useState("서울");
 
   const getDustCurrent = async () => {
     const url = `https://apis.data.go.kr/B552584/UlfptcaAlarmInqireSvc/getUlfptcaAlarmInfo?serviceKey=${apiKey}&returnType=json&numOfRows=100&pageNo=1&year=${currentYear}`;
@@ -22,6 +23,10 @@ function App() {
     setFineDust(dust);
   };
 
+  const getClickSn = (targetId) => {
+    setClickSn(targetId);
+  };
+
   useEffect(() => {
     getDustCurrent();
   }, []);
@@ -30,8 +35,8 @@ function App() {
     <div className="content">
       <Container className="app">
         <h1 className="title">전국 미세먼지</h1>
-        <Content />
-        <MapPing fineDust={fineDust} />
+        <Content clickSn={clickSn} />
+        <MapPing fineDust={fineDust} getClickSn={getClickSn} />
       </Container>
     </div>
   );
