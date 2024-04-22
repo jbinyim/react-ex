@@ -40,6 +40,12 @@
   cursor: pointer;
 }
 
+.mapImg div span {
+  display: block;
+  text-align: center;
+  font-size: 13px;
+}
+
 #서울 {
   top: calc(15%);
   left: calc(33%);

@@ -19,13 +19,13 @@ function App() {
     const data = await response.json();
     const dust = data.response.body.items;
 
-    const i = "268, 282, 287, 314, 265, 259, 318, 330, 293, 285, 225";
-
     setFineDust(dust);
   };
+
   useEffect(() => {
     getDustCurrent();
   }, []);
+
   return (
     <div className="content">
       <Container className="app">
