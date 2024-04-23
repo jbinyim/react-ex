@@ -1,17 +1,17 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import Home from "./pages/Home";
-import Thumnail from "./pages/Thumnail";
+import GalleryHome from "./pages/GalleryHome";
+import DiaryHome from "./pages/DiaryHome";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/thumnail/:id" element={<Thumnail />} />
+        <Route path="/" element={<GalleryHome />} />
+        <Route path="/diary" element={<DiaryHome />} />
       </Routes>
     </div>
   );

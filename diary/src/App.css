@@ -4,3 +4,12 @@
 .header {
   text-align: center;
 }
+.button {
+  border: 1px solid transparent;
+  padding: 10px 20px;
+  transition: all 0.3s;
+}
+.button:hover {
+  border: 1px solid #f0f0f0;
+  background: none;
+}

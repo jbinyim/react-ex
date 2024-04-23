@@ -5,9 +5,13 @@ import HeaderButton from "../components/HeaderButton";
 
 const Home = () => {
   const [nowDate, setNowDate] = useState(new Date());
-  console.log(nowDate);
-  const onDecreaseMonth = () => {};
-  const onIncreaseMonth = () => {};
+
+  const onDecreaseMonth = () => {
+    setNowDate(new Date(nowDate.getFullYear(), nowDate.getMonth() - 1));
+  };
+  const onIncreaseMonth = () => {
+    setNowDate(new Date(nowDate.getFullYear(), nowDate.getMonth() + 1));
+  };
   const headerTitle = `${nowDate.getFullYear()}년 ${nowDate.getMonth() + 1}월`;
   return (
     <Container className="home">
