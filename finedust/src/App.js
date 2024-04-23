@@ -11,7 +11,7 @@ const currentYear = new Date().getFullYear();
 
 function App() {
   const [fineDust, setFineDust] = useState([]);
-  const [clickSn, setClickSn] = useState("서울");
+  const [clickSn, setClickSn] = useState({});
 
   const getDustCurrent = async () => {
     const url = `https://apis.data.go.kr/B552584/UlfptcaAlarmInqireSvc/getUlfptcaAlarmInfo?serviceKey=${apiKey}&returnType=json&numOfRows=100&pageNo=1&year=${currentYear}`;
@@ -19,22 +19,22 @@ function App() {
     const response = await fetch(url);
     const data = await response.json();
     const dust = data.response.body.items;
-
     setFineDust(dust);
   };
 
-  const getClickSn = (targetId) => {
-    setClickSn(targetId);
+  const getClickSn = (info) => {
+    setClickSn(info);
   };
 
   useEffect(() => {
     getDustCurrent();
-  }, []);
+  }, [clickSn]);
 
   return (
     <div className="content">
       <Container className="app">
         <h1 className="title">전국 미세먼지</h1>
+        <p>지역 클릭시 상세 정보를 확인 할 수 있어요!</p>
         <Content clickSn={clickSn} />
         <MapPing fineDust={fineDust} getClickSn={getClickSn} />
       </Container>

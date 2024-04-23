@@ -5,7 +5,7 @@ const MapPing = ({ fineDust, getClickSn }) => {
   let it = {};
   const areaNum = (num) => {
     fineDust.map((item) => {
-      if (item.sn === num) {
+      if (item.sn == num) {
         return (it = item);
       }
     });

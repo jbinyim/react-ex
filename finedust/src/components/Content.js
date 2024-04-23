@@ -15,10 +15,10 @@ const Content = ({ clickSn }) => {
         </thead>
         <tbody className="content_tbody">
           <tr className="tbody_tr">
-            <td>{clickSn}</td>
-            <td>주의보</td>
-            <td>182 m3</td>
-            <td>2024-04-17</td>
+            <td>{clickSn.district}</td>
+            <td>{clickSn.issueGbn}</td>
+            <td>{clickSn.issueVal}m3</td>
+            <td>{clickSn.issueDate}</td>
           </tr>
         </tbody>
       </Table>
