@@ -4,18 +4,21 @@ import { tailAction } from "../redux/actions/tailAction";
 import GallerySearch from "../components/GallerySearch";
 import GalleryCard from "../components/GalleryCard";
 import { Container, Row, Col } from "react-bootstrap";
+import { useSearchParams } from "react-router-dom/dist";
 
 const GalleryHome = () => {
+  const [query, setQuery] = useSearchParams();
   const dispatch = useDispatch();
   const tailList = useSelector((state) => state.tail.tailList);
 
   const getGallerys = async () => {
-    dispatch(tailAction.getTails());
+    const searchQuery = query.get("q") || "";
+    dispatch(tailAction.getTails(searchQuery));
   };
 
   useEffect(() => {
     getGallerys();
-  }, []);
+  }, [query]);
 
   return (
     <Container>

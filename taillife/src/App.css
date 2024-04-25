@@ -5,6 +5,7 @@
 }
 .navbar-brand {
   cursor: pointer;
+  color: #964b00;
 }
 .me-auto a:hover {
   text-decoration: underline;
@@ -47,7 +48,7 @@
   transform: translateY(-20px);
 }
 .galleryCard img:hover ~ h4 {
-  border-bottom: 1px solid #000;
+  text-decoration: underline;
 }
 
 .galleryCard h4 {
@@ -98,4 +99,102 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* diary */
+.header {
+  text-align: center;
+  padding: 80px 0 30px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+}
+.coomonBtn {
+  border: 3px solid transparent;
+  border-radius: 10px;
+  padding: 10px 20px;
+  transition: all 0.3s;
+}
+.coomonBtn:hover {
+  background: #fff;
+  border: 3px solid #f0f0f0;
+}
+
+.diaryEditor {
+  /* border: 1px solid #f00; */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.today input {
+  border: none;
+  border-radius: 10px;
+  background: #f0f0f0;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.todayDiary textarea {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.editorBottomBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.editorBottomBtn button:last-child {
+  background: #964b00;
+  color: #fff;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+}
+.editorBottomBtn button:last-child:hover {
+  background: #fff;
+  color: #964b00;
+  border: 1px solid #964b00;
+}
+.diaryList {
+  max-width: 800px;
+  margin: 20px auto 30px;
+  display: flex;
+  flex-direction: column;
+}
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.listHeader select {
+  width: 20%;
+  padding: 15px 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  letter-spacing: -1px;
+  text-align: center;
+  background: #f0f0f0;
+  cursor: pointer;
+}
+.createNew {
+  display: inline-block;
+  width: 80%;
+  padding: 8px 0;
+  text-align: center;
+  border: 3px solid transparent;
+  border-radius: 10px;
+  background: #964b00;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.createNew:hover {
+  border: 3px solid #964b00;
+  background: #fff;
+  color: #964b00;
 }
