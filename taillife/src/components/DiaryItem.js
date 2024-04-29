@@ -25,7 +25,7 @@ const DiaryItem = ({ it }) => {
         <ContentWrapper>{it.content.slice(0, 25)}</ContentWrapper>
       </InfoSection>
       <div>
-        <Buttons onClick={goEdit} text="수정하기" />
+        <Buttons onClick={goEdit} text="수정" />
       </div>
     </ItemOfDiary>
   );

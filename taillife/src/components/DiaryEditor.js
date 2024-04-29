@@ -1,13 +1,22 @@
-import React, { useCallback, useState, useEfffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import Buttons from "./Buttons";
 import EmotionList from "./EmotionList";
 import { useNavigate } from "react-router-dom/dist";
-import { getEmotionImgById, emotionList } from "../util";
+import { emotionList, getFormattedDate } from "../util";
 import styled from "styled-components";
 
-const DiaryEditor = ({ onSubmit }) => {
-  const [state, setState] = useState({});
+const DiaryEditor = ({ initData, onSubmit }) => {
   const navigate = useNavigate();
+  const [state, setState] = useState({});
+
+  useEffect(() => {
+    if (initData) {
+      setState({
+        ...initData,
+        date: getFormattedDate(new Date(initData.date)),
+      });
+    }
+  }, [initData]);
 
   const handleChangeDate = (e) => {
     setState({

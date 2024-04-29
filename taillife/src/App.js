@@ -9,6 +9,7 @@ import DiaryNew from "./pages/DiaryNew";
 import DiaryInfo from "./pages/DiaryInfo";
 import { Routes, Route } from "react-router-dom";
 import React, { useReducer, useRef, useEffect, useState } from "react";
+import { type } from "@testing-library/user-event/dist/type";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -17,6 +18,20 @@ const reducer = (state, action) => {
     }
     case "CREATE": {
       const newState = [action.data, ...state];
+      localStorage.setItem("diary", JSON.stringify(newState));
+      return newState;
+    }
+    case "UPDATE": {
+      const newState = state.map((it) =>
+        String(it.id) === String(action.data.id) ? { ...action.data } : it
+      );
+      localStorage.setItem("diary", JSON.stringify(newState));
+      return newState;
+    }
+    case "DELETE": {
+      const newState = state.filter(
+        (it) => String(it.id) !== String(action.targetId)
+      );
       localStorage.setItem("diary", JSON.stringify(newState));
       return newState;
     }
@@ -66,9 +81,29 @@ function App() {
     });
     idRef.current += 1;
   };
+
+  const onUpdate = (targetId, date, emotionId, content) => {
+    dispatch({
+      type: "UPDATE",
+      data: {
+        id: targetId,
+        date: new Date(date).getTime(),
+        emotionId,
+        content,
+      },
+    });
+  };
+
+  const onDelete = (targetId) => {
+    dispatch({
+      type: "DELETE",
+      targetId,
+    });
+  };
+
   return (
     <DiaryStateContext.Provider value={data}>
-      <DiaryDispatchContext.Provider value={{ onCreate }}>
+      <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
         <div className="App">
           <NavBar />
           <Routes>
