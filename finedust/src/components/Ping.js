@@ -1,4 +1,5 @@
 const Ping = ({ area, it, getClickSn }) => {
+  console.log(it?.districtName);
   const getSn = (e) => {
     const info = {
       district: e.target.id || e.target.parentNode.id,
@@ -11,8 +12,8 @@ const Ping = ({ area, it, getClickSn }) => {
   };
   return (
     <div id={area} onClick={getSn}>
-      <span>{it?.districtName}</span>
-      <span>{it?.issueGbn}</span>
+      <span>{it?.districtName ? it?.districtName : area}</span>
+      <span>{it?.issueGbn ? it?.issueGbn : "로딩중.."}</span>
     </div>
   );
 };
