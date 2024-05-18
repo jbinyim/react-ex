@@ -21,8 +21,8 @@ const DiaryItem = ({ it }) => {
         <DiaryImage src={getEmotionImgById(it.emotionId)} />
       </DiaryimageBox>
       <InfoSection onClick={goDetail}>
-        <DataWrapper>{new Date(it.date).toLocaleDateString()}</DataWrapper>
-        <ContentWrapper>{it.content.slice(0, 25)}</ContentWrapper>
+        <DataWrapper>{new Date(it?.date).toLocaleDateString()}</DataWrapper>
+        <ContentWrapper>{it?.content?.slice(0, 25)}</ContentWrapper>
       </InfoSection>
       <div>
         <Buttons onClick={goEdit} text="수정" />
