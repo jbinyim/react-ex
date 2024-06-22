@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faSortDown } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +9,9 @@ const HeaderBox = styled.div`
   height: 70px;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
 `;
 
 const MenuBox = styled.div`
@@ -49,23 +52,29 @@ const SearcMenuhBox = styled.div`
   }
 `;
 
-const SearchBox = styled.div`
-  width: 275px;
+const SearchBox = styled.div<{ searchBtn: boolean }>`
+  margin-right: 10px;
+  transition: all 0.3s;
+  width: ${(props) => (props.searchBtn === true ? "275px" : "0")};
   display: flex;
   gap: 10px;
   padding: 5px;
-  border: 1px solid #fff;
+  background: ${(props) => (props.searchBtn === true ? "#000" : "none")};
+  border: ${(props) => (props.searchBtn === true ? "1px solid #fff" : "none")};
   .fa-magnifying-glass {
     font-size: 22px;
     cursor: pointer;
   }
 `;
 
-const Search = styled.input`
-  width: 100%;
+const Search = styled.input<{ searchBtn: boolean }>`
+  transition: all 0.3s;
+  width: ${(props) => (props.searchBtn === true ? "100%" : "0")};
   height: 22px;
-  background: transparent;
+  background: #000;
   border: none;
+  outline: none;
+  color: #fff;
 `;
 
 const ProfileBox = styled.div`
@@ -84,6 +93,7 @@ const Profile = styled.img`
 `;
 
 const Header = () => {
+  const [searchBtn, setSearchBtn] = useState(false);
   return (
     <HeaderBox>
       <MenuBox>
@@ -98,9 +108,16 @@ const Header = () => {
         </MenuList>
       </MenuBox>
       <SearcMenuhBox>
-        <SearchBox>
-          <FontAwesomeIcon icon={faSearch} />
-          <Search type="text" placeholder="제목, 사람, 장르" />
+        <SearchBox searchBtn={searchBtn}>
+          <FontAwesomeIcon
+            onClick={() => setSearchBtn((prev) => !prev)}
+            icon={faSearch}
+          />
+          <Search
+            searchBtn={searchBtn}
+            type="text"
+            placeholder="제목, 사람, 장르"
+          />
         </SearchBox>
         <p>키즈</p>
         <FontAwesomeIcon icon={faBell} />
