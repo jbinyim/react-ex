@@ -137,8 +137,8 @@ const SceondContent = styled.div`
 `;
 
 const TopContents = styled.div`
-  position: relative;
   height: 206px;
+  display: flex;
   p {
     font-size: 250px;
     font-weight: bold;
@@ -154,9 +154,6 @@ const TopContents = styled.div`
   }
   img {
     height: 100%;
-    position: absolute;
-    top: 0;
-    right: 55px;
     z-index: 1;
   }
 `;
