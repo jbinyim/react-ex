@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faSortDown } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
 
-const HeaderBox = styled.div`
+const HeaderBox = styled.div<{ $position: number }>`
   width: 100%;
   height: 70px;
   display: flex;
@@ -12,6 +12,8 @@ const HeaderBox = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  background: ${(props) => (props.$position > 70 ? "#000" : "transparent")};
+  transition: all 0.3s;
 `;
 
 const MenuBox = styled.div`
@@ -52,24 +54,24 @@ const SearcMenuhBox = styled.div`
   }
 `;
 
-const SearchBox = styled.div<{ searchBtn: boolean }>`
+const SearchBox = styled.div<{ $searchBtn: boolean }>`
   margin-right: 10px;
   transition: all 0.3s;
-  width: ${(props) => (props.searchBtn === true ? "275px" : "0")};
+  width: ${(props) => (props.$searchBtn === true ? "275px" : "0")};
   display: flex;
   gap: 10px;
   padding: 5px;
-  background: ${(props) => (props.searchBtn === true ? "#000" : "none")};
-  border: ${(props) => (props.searchBtn === true ? "1px solid #fff" : "none")};
+  background: ${(props) => (props.$searchBtn === true ? "#000" : "none")};
+  border: ${(props) => (props.$searchBtn === true ? "1px solid #fff" : "none")};
   .fa-magnifying-glass {
     font-size: 22px;
     cursor: pointer;
   }
 `;
 
-const Search = styled.input<{ searchBtn: boolean }>`
+const Search = styled.input<{ $searchBtn: boolean }>`
   transition: all 0.3s;
-  width: ${(props) => (props.searchBtn === true ? "100%" : "0")};
+  width: ${(props) => (props.$searchBtn === true ? "100%" : "0")};
   height: 22px;
   background: #000;
   border: none;
@@ -94,8 +96,21 @@ const Profile = styled.img`
 
 const Header = () => {
   const [searchBtn, setSearchBtn] = useState(false);
+  const [position, sePosition] = useState(0);
+
+  function onScroll() {
+    sePosition(window.scrollY);
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
   return (
-    <HeaderBox>
+    <HeaderBox $position={position}>
       <MenuBox>
         <Logo
           src="https://cdn.icon-icons.com/icons2/2699/PNG/512/netflix_logo_icon_170918.png"
@@ -108,13 +123,13 @@ const Header = () => {
         </MenuList>
       </MenuBox>
       <SearcMenuhBox>
-        <SearchBox searchBtn={searchBtn}>
+        <SearchBox $searchBtn={searchBtn}>
           <FontAwesomeIcon
             onClick={() => setSearchBtn((prev) => !prev)}
             icon={faSearch}
           />
           <Search
-            searchBtn={searchBtn}
+            $searchBtn={searchBtn}
             type="text"
             placeholder="제목, 사람, 장르"
           />

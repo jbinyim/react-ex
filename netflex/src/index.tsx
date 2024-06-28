@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Source Sans 3", sans-serif;
     color: #fff;
     background-color: ${(props) => props.theme.bg};
+    overflow-x: hidden;
   }
 
   ul, li {

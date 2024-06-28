@@ -1,10 +1,17 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { getPopMovies, MovieResponse } from "../api";
+import {
+  getNowMovies,
+  MovieResponse,
+  getRatedMovies,
+  RatedMovie,
+} from "../api";
 import { ImgPath } from "../util";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo, faPlay } from "@fortawesome/free-solid-svg-icons";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const Container = styled.div`
   width: 100%;
@@ -86,17 +93,120 @@ const DetailBtn = styled.button`
   }
 `;
 
+const MainBox = styled.div`
+  margin: 0 60px;
+  .react-multi-carousel-list {
+    overflow: visible;
+    position: relative;
+    .react-multi-carousel-track {
+      gap: 10px;
+    }
+    .react-multiple-carousel__arrow {
+      position: absolute;
+      height: 100%;
+      border-radius: 0;
+      &::before {
+        font-size: 30px;
+      }
+    }
+    .react-multiple-carousel__arrow--left {
+      left: -60px;
+    }
+    .react-multiple-carousel__arrow--right {
+      right: -60px;
+    }
+  }
+`;
+
+const FirstContent = styled.div`
+  transform: translateY(-80px);
+`;
+
+const SubTitle = styled.p`
+  font-size: 26px;
+  margin-bottom: 20px;
+`;
+
+const Contents = styled.div<{ $bg: string }>`
+  height: 163px;
+  background: url(${(props) => props.$bg}) center/cover no-repeat;
+`;
+
+const SceondContent = styled.div`
+  margin-bottom: 60px;
+`;
+
+const TopContents = styled.div`
+  position: relative;
+  height: 206px;
+  p {
+    font-size: 250px;
+    font-weight: bold;
+    line-height: 190px;
+    letter-spacing: -40px;
+    text-align: left;
+    color: #000;
+    -webkit-text-stroke: 5px #595959;
+  }
+  .top10 {
+    font-size: 200px;
+    transform: translateX(-20px);
+  }
+  img {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 55px;
+    z-index: 1;
+  }
+`;
+
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 6,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
+
 const Home = () => {
-  const { data, isLoading } = useQuery<MovieResponse>(["popMovies"], () =>
-    getPopMovies()
+  const { data: nowMovie, isLoading: popLoading } = useQuery<MovieResponse>(
+    ["popMovies"],
+    () => getNowMovies(),
+    {
+      refetchOnWindowFocus: false,
+    }
   );
-  console.log(data);
+  const { data: ratedMovie, isLoading: ratedLoading } = useQuery<RatedMovie>(
+    ["ratedMovies"],
+    () => getRatedMovies(),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  const isLoading = popLoading || ratedLoading;
+
+  console.log(ratedMovie);
+
   if (isLoading) {
     return <div>Loding</div>;
   } else {
     return (
       <Container>
-        <HomeBox $bgImg={ImgPath(data?.results[0].backdrop_path)}>
+        <HomeBox $bgImg={ImgPath(nowMovie?.results[0].backdrop_path)}>
           <BoxTop>
             <Logo
               src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/227_Netflix_logo-512.png"
@@ -104,8 +214,8 @@ const Home = () => {
             />
             <MovieText>영화</MovieText>
           </BoxTop>
-          <Title>{data?.results[0].title}</Title>
-          <OverViewText>{data?.results[0].overview}</OverViewText>
+          <Title>{nowMovie?.results[0].title}</Title>
+          <OverViewText>{nowMovie?.results[0].overview}</OverViewText>
           <BtnBox>
             <PlayBtn>
               <FontAwesomeIcon icon={faPlay} />
@@ -117,6 +227,39 @@ const Home = () => {
             </DetailBtn>
           </BtnBox>
         </HomeBox>
+        <MainBox>
+          <FirstContent>
+            <SubTitle>새로 올라온 콘텐츠</SubTitle>
+            <Carousel responsive={responsive}>
+              {nowMovie?.results.map((item) => (
+                <Contents
+                  key={item.id}
+                  $bg={ImgPath(item.backdrop_path)}
+                ></Contents>
+              ))}
+            </Carousel>
+          </FirstContent>
+          <SceondContent>
+            <SubTitle>오늘 TOP 10 영화</SubTitle>
+            <Carousel responsive={responsive}>
+              {ratedMovie?.results.slice(0, 10).map((item, idx) => (
+                <>
+                  <TopContents key={item.id}>
+                    <p className={`top${idx + 1}`}>{idx + 1}</p>
+                    <img src={ImgPath(item.poster_path)} alt="movieposter" />
+                  </TopContents>
+                </>
+              ))}
+            </Carousel>
+          </SceondContent>
+          <SubTitle>다가오는 영화</SubTitle>
+          <Carousel responsive={responsive}>
+            <div>Item 1</div>
+            <div>Item 2</div>
+            <div>Item 3</div>
+            <div>Item 4</div>
+          </Carousel>
+        </MainBox>
       </Container>
     );
   }

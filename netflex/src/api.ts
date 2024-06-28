@@ -27,8 +27,19 @@ export interface MovieResponse {
   results: MovieResult[];
 }
 
-export const getPopMovies = () => {
+export interface RatedMovie {
+  page: number;
+  results: MovieResult[];
+}
+
+export const getNowMovies = () => {
   return fetch(
     `${BASE_PATH}/movie/now_playing?language=ko-kr&page=1&api_key=${API_KEY}`
+  ).then((response) => response.json());
+};
+
+export const getRatedMovies = () => {
+  return fetch(
+    `${BASE_PATH}/movie/top_rated?language=ko-kr&page=1&api_key=${API_KEY}`
   ).then((response) => response.json());
 };
