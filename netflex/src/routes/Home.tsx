@@ -256,6 +256,7 @@ const Home = () => {
             <div>Item 3</div>
             <div>Item 4</div>
           </Carousel>
+          <p></p>
         </MainBox>
       </Container>
     );
