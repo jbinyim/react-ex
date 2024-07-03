@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faSortDown } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const HeaderBox = styled.div<{ $position: number }>`
   width: 100%;
@@ -14,6 +15,7 @@ const HeaderBox = styled.div<{ $position: number }>`
   left: 0;
   background: ${(props) => (props.$position > 70 ? "#000" : "transparent")};
   transition: all 0.3s;
+  z-index: 10;
 `;
 
 const MenuBox = styled.div`
@@ -97,6 +99,22 @@ const Profile = styled.img`
 const Header = () => {
   const [searchBtn, setSearchBtn] = useState(false);
   const [position, sePosition] = useState(0);
+  const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
+
+  const goToHome = () => {
+    navigate("/");
+  };
+
+  const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+  };
+
+  const onSearch = (e: any) => {
+    if (e.key === "Enter") {
+      navigate(`/search?keyword=${searchText}`);
+    }
+  };
 
   function onScroll() {
     sePosition(window.scrollY);
@@ -115,6 +133,7 @@ const Header = () => {
         <Logo
           src="https://cdn.icon-icons.com/icons2/2699/PNG/512/netflix_logo_icon_170918.png"
           alt="logo"
+          onClick={goToHome}
         />
         <MenuList>
           <Menu>홈</Menu>
@@ -132,6 +151,8 @@ const Header = () => {
             $searchBtn={searchBtn}
             type="text"
             placeholder="제목, 사람, 장르"
+            onChange={onInput}
+            onKeyUp={onSearch}
           />
         </SearchBox>
         <p>키즈</p>
