@@ -9,12 +9,14 @@ const ContentsBox = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  border-radius: 5px;
   transition: all 0.3s;
+  cursor: pointer;
+
   &:hover {
     position: relative;
-    z-index: 99;
-    transform: translateY(-50px) scale(1.3);
-
+    z-index: 999;
+    transform: translateY(-50px) scale(1.5);
     .desc {
       display: block;
     }
@@ -29,6 +31,7 @@ const Contents = styled.img`
 const DescBox = styled.div`
   display: none;
   background: ${(props) => props.theme.bg};
+  box-shadow: 0px 0px 10px #000;
 `;
 
 const DescTitle = styled.h3`
