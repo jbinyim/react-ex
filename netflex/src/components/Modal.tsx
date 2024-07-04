@@ -14,7 +14,7 @@ const ModalBox = styled.div`
 
 const ModalContent = styled.div`
   width: 100%;
-  max-width: 1000px;
+  max-width: 800px;
   height: auto;
   max-height: 90%;
   position: absolute;

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useQuery } from "react-query";
-import { getNowMovies, MovieResponse } from "../api";
+import { getNowMovies, MovieResponse, getSearchMovies, SearchI } from "../api";
 import { ImgPath } from "../util";
-import { useMatch } from "react-router-dom";
+import { useMatch, PathMatch } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo, faPlay } from "@fortawesome/free-solid-svg-icons";
 import Carousel from "react-multi-carousel";
@@ -15,6 +15,8 @@ import Modal from "../components/Modal";
 const Container = styled.div`
   width: 100%;
   height: 100%;
+  /* 나중에 수정 */
+  margin-bottom: 200px;
 `;
 
 const HomeBox = styled.div<{ $bgImg: string }>`
@@ -100,6 +102,7 @@ const MainBox = styled.div`
     .react-multi-carousel-track {
       gap: 10px;
       li {
+        transform-style: flat;
         height: 16.3vh;
       }
     }
@@ -133,7 +136,7 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 5,
+    items: 6,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -150,6 +153,9 @@ const responsive = {
 };
 
 const Home = () => {
+  // const [modalText, setModalText] = useState("");
+  const modalId: PathMatch<"modalId"> | null = useMatch("/movies/:modalId");
+
   const { data: nowMovie, isLoading: popLoading } = useQuery<MovieResponse>(
     ["popMovies"],
     () => getNowMovies(),
@@ -158,17 +164,24 @@ const Home = () => {
     }
   );
 
-  const modalId = useMatch("/movies/:modalId");
+  // if (modalId?.params.modalId) {
+  //   setModalText(decodeURIComponent(modalId.params.modalId));
+  // }
 
-  const matchModal =
-    modalId?.params.modalId &&
-    nowMovie?.results.find(
-      (item) => item.id === Number(modalId.params.modalId)
-    );
+  // const { data: modalMovie } = useQuery<SearchI>(["modalProps"], () =>
+  //   getSearchMovies(modalText)
+  // );
+
+  // const matchModal =
+  //   modalId?.params.modalId &&
+  //   nowMovie?.results.find(
+  //     (item) => item.id === Number(modalId.params.modalId)
+  //   );
 
   const isLoading = popLoading;
+  const dataLoading = nowMovie;
 
-  if (isLoading) {
+  if (isLoading && !dataLoading) {
     return <div>Loding</div>;
   } else {
     return (

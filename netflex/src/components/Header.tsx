@@ -125,7 +125,7 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [searchText]);
 
   return (
     <HeaderBox $position={position}>

@@ -8,6 +8,7 @@ export interface MovieResult {
   id: number;
   original_language: string;
   original_title: string;
+  original_name?: string;
   overview: string;
   popularity: number;
   poster_path: string;
@@ -16,6 +17,7 @@ export interface MovieResult {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  media_type?: string;
 }
 
 export interface MovieResponse {
@@ -41,6 +43,11 @@ export interface UpcomingMovie {
   results: MovieResult[];
 }
 
+export interface SearchI {
+  page: number;
+  results: MovieResult[];
+}
+
 export const getNowMovies = () => {
   return fetch(
     `${BASE_PATH}/movie/now_playing?language=ko-kr&page=1&api_key=${API_KEY}`
@@ -59,8 +66,8 @@ export const getUpComingMovies = () => {
   ).then((response) => response.json());
 };
 
-export const getSearchMovies = () => {
+export const getSearchMovies = (keyword: string | null) => {
   return fetch(
-    `${BASE_PATH}/search/multi?query=%EB%A7%88%EB%8F%99%EC%84%9D&include_adult=false&language=ko-kr&page=1&api_key=${API_KEY}`
-  );
+    `${BASE_PATH}/search/multi?query=${keyword}&include_adult=false&language=ko-kr&page=1&api_key=${API_KEY}`
+  ).then((response) => response.json());
 };

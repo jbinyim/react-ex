@@ -14,6 +14,22 @@ import "react-multi-carousel/lib/styles.css";
 
 const SceondContent = styled.div`
   margin-bottom: 60px;
+  .react-multi-carousel-list {
+    overflow: visible;
+    position: relative;
+    height: 20.6vh;
+    .react-multi-carousel-track {
+      height: 100%;
+      gap: 10px;
+      li {
+        height: 100%;
+        /* transform-style: flat; */
+      }
+    }
+    .react-multiple-carousel__arrow {
+      height: 100%;
+    }
+  }
 `;
 
 const TopContents = styled.div`
