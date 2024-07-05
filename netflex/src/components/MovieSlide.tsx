@@ -23,7 +23,7 @@ const SceondContent = styled.div`
       gap: 10px;
       li {
         height: 100%;
-        /* transform-style: flat; */
+        transform-style: flat;
       }
     }
     .react-multiple-carousel__arrow {
@@ -71,7 +71,7 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2,
+    items: 3,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },

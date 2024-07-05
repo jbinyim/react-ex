@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useQuery } from "react-query";
-import { getNowMovies, MovieResponse, getSearchMovies, SearchI } from "../api";
+import { getNowMovies, MovieResponse } from "../api";
 import { ImgPath } from "../util";
 import { useMatch, PathMatch } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,10 +21,10 @@ const Container = styled.div`
 
 const HomeBox = styled.div<{ $bgImg: string }>`
   width: 100%;
-  height: 87vh;
+  height: 93vh;
   padding: 0 60px;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
-    url(${(props) => props.$bgImg}) center/cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(20, 20, 20, 1)),
+    url(${(props) => props.$bgImg}) top/cover no-repeat;
 `;
 
 const BoxTop = styled.div`
@@ -125,6 +125,7 @@ const MainBox = styled.div`
 
 const FirstContent = styled.div`
   transform: translateY(-8vh);
+  margin-bottom: 2vh;
 `;
 
 const SubTitle = styled.p`
@@ -144,16 +145,15 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 4,
+    items: 3,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 2,
+    items: 1,
   },
 };
 
 const Home = () => {
-  // const [modalText, setModalText] = useState("");
   const modalId: PathMatch<"modalId"> | null = useMatch("/movies/:modalId");
 
   const { data: nowMovie, isLoading: popLoading } = useQuery<MovieResponse>(
@@ -163,20 +163,6 @@ const Home = () => {
       refetchOnWindowFocus: false,
     }
   );
-
-  // if (modalId?.params.modalId) {
-  //   setModalText(decodeURIComponent(modalId.params.modalId));
-  // }
-
-  // const { data: modalMovie } = useQuery<SearchI>(["modalProps"], () =>
-  //   getSearchMovies(modalText)
-  // );
-
-  // const matchModal =
-  //   modalId?.params.modalId &&
-  //   nowMovie?.results.find(
-  //     (item) => item.id === Number(modalId.params.modalId)
-  //   );
 
   const isLoading = popLoading;
   const dataLoading = nowMovie;
@@ -218,7 +204,9 @@ const Home = () => {
           </FirstContent>
           <MovieSlide />
         </MainBox>
-        {modalId && <Modal />}
+        {modalId?.params.modalId && (
+          <Modal word={decodeURIComponent(modalId?.params.modalId)} />
+        )}
       </Container>
     );
   }
