@@ -11,7 +11,7 @@ const ContentsBox = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  transition: all 0.3s;
+  transition: all 0.5s;
 
   &:hover {
     position: relative;
