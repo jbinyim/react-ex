@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useQuery } from "react-query";
 import { getNowMovies, MovieResponse } from "../api";
 import { ImgPath } from "../util";
-import { useMatch, PathMatch } from "react-router-dom";
+import { useMatch, PathMatch, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo, faPlay } from "@fortawesome/free-solid-svg-icons";
 import Carousel from "react-multi-carousel";
@@ -154,6 +154,7 @@ const responsive = {
 };
 
 const Home = () => {
+  const navigation = useNavigate();
   const modalId: PathMatch<"modalId"> | null = useMatch("/movies/:modalId");
 
   const { data: nowMovie, isLoading: popLoading } = useQuery<MovieResponse>(
@@ -163,6 +164,14 @@ const Home = () => {
       refetchOnWindowFocus: false,
     }
   );
+
+  const videoPlay = (movieId: number) => {
+    navigation(`/video?movieId=${movieId}`);
+  };
+
+  const moviedetail = (movieTitle: string | undefined) => {
+    navigation(`/movies/${movieTitle}`);
+  };
 
   const isLoading = popLoading;
   const dataLoading = nowMovie;
@@ -183,11 +192,11 @@ const Home = () => {
           <Title>{nowMovie?.results[0].title}</Title>
           <OverViewText>{nowMovie?.results[0].overview}</OverViewText>
           <BtnBox>
-            <PlayBtn>
+            <PlayBtn onClick={() => videoPlay(Number(nowMovie?.results[0].id))}>
               <FontAwesomeIcon icon={faPlay} />
               <p>재생</p>
             </PlayBtn>
-            <DetailBtn>
+            <DetailBtn onClick={() => moviedetail(nowMovie?.results[0].title)}>
               <FontAwesomeIcon icon={faCircleInfo} />
               <p>상세 정보</p>
             </DetailBtn>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, KeyboardEvent } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faSortDown } from "@fortawesome/free-solid-svg-icons";
@@ -110,9 +110,10 @@ const Header = () => {
     setSearchText(e.target.value);
   };
 
-  const onSearch = (e: any) => {
+  const onSearch = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       navigate(`/search?keyword=${searchText}`);
+      setSearchText("");
     }
   };
 
@@ -127,46 +128,51 @@ const Header = () => {
     };
   }, [searchText]);
 
-  return (
-    <HeaderBox $position={position}>
-      <MenuBox>
-        <Logo
-          src="https://cdn.icon-icons.com/icons2/2699/PNG/512/netflix_logo_icon_170918.png"
-          alt="logo"
-          onClick={goToHome}
-        />
-        <MenuList>
-          <Menu>홈</Menu>
-          <Menu>시리즈</Menu>
-          <Menu>영화</Menu>
-        </MenuList>
-      </MenuBox>
-      <SearcMenuhBox>
-        <SearchBox $searchBtn={searchBtn}>
-          <FontAwesomeIcon
-            onClick={() => setSearchBtn((prev) => !prev)}
-            icon={faSearch}
+  if (window.location.pathname === "/video") {
+    return null;
+  } else {
+    return (
+      <HeaderBox $position={position}>
+        <MenuBox>
+          <Logo
+            src="https://cdn.icon-icons.com/icons2/2699/PNG/512/netflix_logo_icon_170918.png"
+            alt="logo"
+            onClick={goToHome}
           />
-          <Search
-            $searchBtn={searchBtn}
-            type="text"
-            placeholder="제목, 사람, 장르"
-            onChange={onInput}
-            onKeyUp={onSearch}
-          />
-        </SearchBox>
-        <p>키즈</p>
-        <FontAwesomeIcon icon={faBell} />
-        <ProfileBox>
-          <Profile
-            src="https://i.pinimg.com/474x/61/54/76/61547625e01d8daf941aae3ffb37f653.jpg"
-            alt="profile"
-          />
-          <FontAwesomeIcon icon={faSortDown} />
-        </ProfileBox>
-      </SearcMenuhBox>
-    </HeaderBox>
-  );
+          <MenuList>
+            <Menu>홈</Menu>
+            <Menu>시리즈</Menu>
+            <Menu>영화</Menu>
+          </MenuList>
+        </MenuBox>
+        <SearcMenuhBox>
+          <SearchBox $searchBtn={searchBtn}>
+            <FontAwesomeIcon
+              onClick={() => setSearchBtn((prev) => !prev)}
+              icon={faSearch}
+            />
+            <Search
+              value={searchText}
+              $searchBtn={searchBtn}
+              type="text"
+              placeholder="제목, 사람, 장르"
+              onChange={onInput}
+              onKeyUp={onSearch}
+            />
+          </SearchBox>
+          <p>키즈</p>
+          <FontAwesomeIcon icon={faBell} />
+          <ProfileBox>
+            <Profile
+              src="https://i.pinimg.com/474x/61/54/76/61547625e01d8daf941aae3ffb37f653.jpg"
+              alt="profile"
+            />
+            <FontAwesomeIcon icon={faSortDown} />
+          </ProfileBox>
+        </SearcMenuhBox>
+      </HeaderBox>
+    );
+  }
 };
 
 export default Header;

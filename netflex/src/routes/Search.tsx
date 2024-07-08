@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getSearchMovies, SearchI } from "../api";
 import { ImgPath } from "../util";
+import Slide from "../components/Slide";
 
 const SearchBox = styled.div`
   margin-top: 70px;
@@ -57,9 +58,7 @@ const Search = () => {
 
   useEffect(() => {
     refetch();
-  }, [refetch, location, keyword]);
-
-  console.log(data);
+  }, [keyword, refetch]);
 
   if (isLoading) {
     return <div>Loading</div>;
@@ -69,17 +68,18 @@ const Search = () => {
         <ContentsTitleBox>
           <ContentsTitle>다음과 관련된 컨텐츠</ContentsTitle>
           {data?.results.slice(0, 4).map((item) => (
-            <ContentsText>{item.title}</ContentsText>
+            <ContentsText key={item.backdrop_path}>{item.title}</ContentsText>
           ))}
         </ContentsTitleBox>
         <ContentsBox>
           {data?.results.map((item) => (
-            <Content
-              key={item.id}
-              $bgImg={ImgPath(
-                item.backdrop_path ? item.backdrop_path : item.poster_path
-              )}
-            ></Content>
+            <Slide key={item.id} item={item} />
+            // <Content
+            //   key={item.id}
+            //   $bgImg={ImgPath(
+            //     item.backdrop_path ? item.backdrop_path : item.poster_path
+            //   )}
+            // ></Content>
           ))}
         </ContentsBox>
       </SearchBox>

@@ -26,6 +26,7 @@ const ContentsBox = styled.div`
 const Contents = styled.img`
   width: 100%;
   height: 100%;
+  max-height: 16.3vh;
   border-radius: 3px;
   cursor: pointer;
 `;
@@ -79,8 +80,9 @@ const Icons = styled.svg`
 const IconsBoxLeft = styled.div``;
 
 const GenreBox = styled.div`
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
 `;
 
 const Genre = styled.p`
@@ -89,6 +91,10 @@ const Genre = styled.p`
 
 const Slide = ({ item }: SlidePros) => {
   const navigate = useNavigate();
+
+  const videoPlay = (movieId: number) => {
+    navigate(`/video?movieId=${movieId}`);
+  };
 
   const gotoModal = (id: string) => {
     navigate(`/movies/${id}`);
@@ -106,12 +112,22 @@ const Slide = ({ item }: SlidePros) => {
 
   return (
     <ContentsBox>
-      <Contents src={ImgPath(item.backdrop_path)} alt="logo" loading="lazy" />
+      <Contents
+        src={ImgPath(
+          item.backdrop_path ? item.backdrop_path : item.poster_path
+        )}
+        alt="logo"
+        loading="lazy"
+      />
       <DescBox className="desc">
         <DescTitle>{item.title}</DescTitle>
         <IconBox>
           <IconsBoxLeft>
-            <Icons xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+            <Icons
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -960 960 960"
+              onClick={() => videoPlay(item.id)}
+            >
               <path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z" />
             </Icons>
             <Icons xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">

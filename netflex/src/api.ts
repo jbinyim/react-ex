@@ -55,6 +55,22 @@ export interface GenreI {
   }[];
 }
 
+export interface VideoI {
+  id: number;
+  results: {
+    iso_639_1: string;
+    iso_3166_1: string;
+    name: string;
+    key: string;
+    site: string;
+    size: number;
+    type: string;
+    official: boolean;
+    published_at: string;
+    id: string;
+  }[];
+}
+
 export const getNowMovies = () => {
   return fetch(
     `${BASE_PATH}/movie/now_playing?language=ko-kr&page=1&api_key=${API_KEY}`
@@ -82,5 +98,11 @@ export const getSearchMovies = (keyword: string | null) => {
 export const getGenre = () => {
   return fetch(
     `${BASE_PATH}/genre/movie/list?language=ko-kr&api_key=${API_KEY}`
+  ).then((response) => response.json());
+};
+
+export const getVideo = (movieId: number) => {
+  return fetch(
+    `${BASE_PATH}/movie/${movieId}/videos?language=ko-kr&api_key=${API_KEY}`
   ).then((response) => response.json());
 };
