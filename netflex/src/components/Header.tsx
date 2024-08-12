@@ -25,9 +25,9 @@ const MenuBox = styled.div`
   gap: 45px;
 `;
 
-const Logo = styled.img`
-  width: 92px;
-  height: 50px;
+const Logo = styled.div`
+  /* width: 92px;
+  height: 50px; */
   cursor: pointer;
 `;
 
@@ -134,11 +134,7 @@ const Header = () => {
     return (
       <HeaderBox $position={position}>
         <MenuBox>
-          <Logo
-            src="https://cdn.icon-icons.com/icons2/2699/PNG/512/netflix_logo_icon_170918.png"
-            alt="logo"
-            onClick={goToHome}
-          />
+          <Logo onClick={goToHome}>Logo</Logo>
           <MenuList>
             <Menu>홈</Menu>
             <Menu>시리즈</Menu>
