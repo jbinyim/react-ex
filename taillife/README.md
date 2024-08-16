@@ -1,3 +1,46 @@
+<details>
+<summary>파일 구조 보기</summary>
+src<br/>
+ ┣ components<br/>
+ ┃ ┣ Buttons.js<br/>
+ ┃ ┣ DiaryEditor.js<br/>
+ ┃ ┣ DiaryItem.js<br/>
+ ┃ ┣ DiaryList.js<br/>
+ ┃ ┣ EmotionList.js<br/>
+ ┃ ┣ GalleryCard.js<br/>
+ ┃ ┣ GalleryDetail.js<br/>
+ ┃ ┣ GallerySearch.js<br/>
+ ┃ ┣ Header.js<br/>
+ ┃ ┣ NavBar.js<br/>
+ ┃ ┗ Viewer.js<br/>
+ ┣ hook<br/>
+ ┃ ┗ useDiary.js<br/>
+ ┣ img<br/>
+ ┃ ┣ emotion1.png<br/>
+ ┃ ┣ emotion2.png<br/>
+ ┃ ┣ emotion3.png<br/>
+ ┃ ┣ emotion4.png<br/>
+ ┃ ┗ emotion5.png<br/>
+ ┣ pages<br/>
+ ┃ ┣ DiaryEdit.js<br/>
+ ┃ ┣ DiaryHome.js<br/>
+ ┃ ┣ DiaryInfo.js<br/>
+ ┃ ┣ DiaryNew.js<br/>
+ ┃ ┗ GalleryHome.js<br/>
+ ┣ redux<br/>
+ ┃ ┣ actions<br/>
+ ┃ ┃ ┗ tailAction.js<br/>
+ ┃ ┣ reducers<br/>
+ ┃ ┃ ┣ index.js<br/>
+ ┃ ┃ ┗ tailReducer.js<br/>
+ ┃ ┗ store.js<br/>
+ ┣ App.css<br/>
+ ┣ App.js<br/>
+ ┣ index.css<br/>
+ ┣ index.js<br/>
+ ┗ util.js<br/>
+</details>
+
 # 🔊 꼬리의 일상
 - 개인프로젝트
 
