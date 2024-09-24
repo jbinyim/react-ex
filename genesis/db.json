@@ -1,0 +1,80 @@
+{
+  "car": [
+    {
+      "id": 0,
+      "name": "G90 Black",
+      "carImg": "https://www.genesis.com/content/dam/genesis-p2/kr/admin/model-information/G90%20BLACK/list-thumbnail/2024-03-21/07-55-08/genesis-kr-admin-model-list-thumbnail-g90-black-desktop-630x240-ko.png",
+      "new": true,
+      "ev": false
+    },
+    {
+      "id": 1,
+      "name": "G90",
+      "subTitle": "LONG WHEEL BASE",
+      "carImg": "https://www.genesis.com/content/dam/genesis-p2/kr/admin/model-information/G90/list-thumbnail/2024-03-21/07-52-08/genesis-kr-admin-model-list-thumbnail-g90-lwb-desktop-630x240-ko.png",
+      "new": false,
+      "ev": false
+    },
+    {
+      "id": 2,
+      "name": "G90",
+      "carImg": "https://www.genesis.com/content/dam/genesis-p2/kr/admin/model-information/G90/list-thumbnail/2024-03-21/07-52-48/genesis-kr-admin-model-list-thumbnail-g90-desktop-630x240-ko.png",
+      "new": false,
+      "ev": false
+    },
+    {
+      "id": 3,
+      "name": "G80",
+      "carImg": "https://www.genesis.com/content/dam/genesis-p2/kr/admin/model-information/G80/list-thumbnail/2023-12-22/18-39-52/genesis-kr-admin-model-list-thumbnail-g80-24fl-desktop-630x240-ko.png",
+      "new": false,
+      "ev": false
+    },
+    {
+      "id": 4,
+      "name": "G80",
+      "subTitle": "ELECTRIFIED",
+      "carImg": "https://www.genesis.com/content/dam/genesis-p2/kr/admin/model-information/G80/list-thumbnail/2024-09-02/13-22-56/genesis-kr-admin-model-list-thumbnail-electrified-g80-25fl-desktop-630x240-ko.png",
+      "new": true,
+      "ev": true
+    },
+    {
+      "id": 5,
+      "name": "G70",
+      "carImg": "https://www.genesis.com/content/dam/genesis-p2/kr/admin/model-information/G70/list-thumbnail/2024-07-03/11-29-48/genesis-kr-admin-model-list-thumbnail-g70-desktop-630x240-kr.png",
+      "new": false,
+      "ev": false
+    },
+    {
+      "id": 6,
+      "name": "G70",
+      "subTitle": "SHOOTING BRAKE",
+      "carImg": "https://www.genesis.com/content/dam/genesis-p2/kr/admin/model-information/G70/list-thumbnail/2024-07-03/11-31-18/genesis-kr-admin-model-list-thumbnail-g70-shooting-brake-desktop-630x240-kr.png",
+      "new": false,
+      "ev": false
+    },
+    {
+      "id": 7,
+      "name": "",
+      "subTitle": "",
+      "carImg": "",
+      "new": true,
+      "ev": false
+    },
+    {
+      "id": 8,
+      "name": "",
+      "subTitle": "",
+      "carImg": "",
+      "new": true,
+      "ev": false
+    },
+    {
+      "id": 9,
+      "name": "",
+      "subTitle": "",
+      "carImg": "",
+      "new": true,
+      "ev": false
+    }
+  ]
+}
